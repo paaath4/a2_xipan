@@ -61,6 +61,10 @@ void Error_Handler(void);
 #define LED_1_GPIO_Port GPIOA
 #define LED_2_Pin GPIO_PIN_5
 #define LED_2_GPIO_Port GPIOA
+#define VALVE_SDA_Pin GPIO_PIN_12
+#define VALVE_SDA_GPIO_Port GPIOB
+#define VALVE_CLK_Pin GPIO_PIN_13
+#define VALVE_CLK_GPIO_Port GPIOB
 #define BEEP_Pin GPIO_PIN_8
 #define BEEP_GPIO_Port GPIOA
 

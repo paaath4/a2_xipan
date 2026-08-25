@@ -47,12 +47,40 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for State_Led */
-osThreadId_t State_LedHandle;
-const osThreadAttr_t State_Led_attributes = {
-  .name = "State_Led",
+/* Definitions for Ledtask */
+osThreadId_t LedtaskHandle;
+const osThreadAttr_t Ledtask_attributes = {
+  .name = "Ledtask",
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for Motortask */
+osThreadId_t MotortaskHandle;
+const osThreadAttr_t Motortask_attributes = {
+  .name = "Motortask",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for Valvetask */
+osThreadId_t ValvetaskHandle;
+const osThreadAttr_t Valvetask_attributes = {
+  .name = "Valvetask",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for Statemac */
+osThreadId_t StatemacHandle;
+const osThreadAttr_t Statemac_attributes = {
+  .name = "Statemac",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for Beeptask */
+osThreadId_t BeeptaskHandle;
+const osThreadAttr_t Beeptask_attributes = {
+  .name = "Beeptask",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityLow,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,7 +88,11 @@ const osThreadAttr_t State_Led_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void Stateled(void *argument);
+void LedTask(void *argument);
+void MotorTask(void *argument);
+void ValveTask(void *argument);
+void StacteMac(void *argument);
+void BeepTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -91,8 +123,20 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of State_Led */
-  State_LedHandle = osThreadNew(Stateled, NULL, &State_Led_attributes);
+  /* creation of Ledtask */
+  LedtaskHandle = osThreadNew(LedTask, NULL, &Ledtask_attributes);
+
+  /* creation of Motortask */
+  MotortaskHandle = osThreadNew(MotorTask, NULL, &Motortask_attributes);
+
+  /* creation of Valvetask */
+  ValvetaskHandle = osThreadNew(ValveTask, NULL, &Valvetask_attributes);
+
+  /* creation of Statemac */
+  StatemacHandle = osThreadNew(StacteMac, NULL, &Statemac_attributes);
+
+  /* creation of Beeptask */
+  BeeptaskHandle = osThreadNew(BeepTask, NULL, &Beeptask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -104,22 +148,94 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_Stateled */
+/* USER CODE BEGIN Header_LedTask */
 /**
-  * @brief  Function implementing the State_Led thread.
+  * @brief  Function implementing the Ledtask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_Stateled */
-void Stateled(void *argument)
+/* USER CODE END Header_LedTask */
+void LedTask(void *argument)
 {
-  /* USER CODE BEGIN Stateled */
+  /* USER CODE BEGIN LedTask */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END Stateled */
+  /* USER CODE END LedTask */
+}
+
+/* USER CODE BEGIN Header_MotorTask */
+/**
+* @brief Function implementing the Motortask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_MotorTask */
+void MotorTask(void *argument)
+{
+  /* USER CODE BEGIN MotorTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END MotorTask */
+}
+
+/* USER CODE BEGIN Header_ValveTask */
+/**
+* @brief Function implementing the Valvetask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ValveTask */
+void ValveTask(void *argument)
+{
+  /* USER CODE BEGIN ValveTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END ValveTask */
+}
+
+/* USER CODE BEGIN Header_StacteMac */
+/**
+* @brief Function implementing the Statemac thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StacteMac */
+void StacteMac(void *argument)
+{
+  /* USER CODE BEGIN StacteMac */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StacteMac */
+}
+
+/* USER CODE BEGIN Header_BeepTask */
+/**
+* @brief Function implementing the Beeptask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_BeepTask */
+void BeepTask(void *argument)
+{
+  /* USER CODE BEGIN BeepTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END BeepTask */
 }
 
 /* Private application code --------------------------------------------------*/
