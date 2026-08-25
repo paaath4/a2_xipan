@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Solenoid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+static uint8_t g_valve_cmd = 0;   /* 阀当前目标状态(bit0=吸, bit1=放), 由状态机写 */
 /* USER CODE END Variables */
 /* Definitions for Ledtask */
 osThreadId_t LedtaskHandle;
@@ -194,10 +194,12 @@ void MotorTask(void *argument)
 void ValveTask(void *argument)
 {
   /* USER CODE BEGIN ValveTask */
-  /* Infinite loop */
+  /* 周期刷新阀状态: 状态机经 Valve_SetCmd 设定目标, 这里每隔 20ms 烧录一次线圈。
+     数据没变时 register_updata 会自动跳过, 不会反复刷 IO。 */
   for(;;)
   {
-    osDelay(1);
+    solenoid_on(g_valve_cmd);
+    osDelay(20);          /* 50Hz 刷新 */
   }
   /* USER CODE END ValveTask */
 }
@@ -240,6 +242,10 @@ void BeepTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+/* 供吸盘状态机(Statemac)调用: 设定阀目标状态 */
+void Valve_SetCmd(uint8_t cmd)
+{
+    g_valve_cmd = cmd & 0x0F;
+}
 /* USER CODE END Application */
 
