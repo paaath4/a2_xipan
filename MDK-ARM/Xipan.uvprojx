@@ -442,6 +442,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Application/Motor</GroupName>
+          <Files>
+            <File>
+              <FileName>dj_motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Motor/Src/dj_motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Motor/Src/pid.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Drivers/STM32F4xx_HAL_Driver</GroupName>
           <Files>
             <File>

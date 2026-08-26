@@ -198,7 +198,7 @@ void ValveTask(void *argument)
      数据没变时 register_updata 会自动跳过, 不会反复刷 IO。 */
   for(;;)
   {
-    solenoid_on(g_valve_cmd);
+    solenoid_on(1, g_valve_cmd);   /* 通道1 */
     osDelay(20);          /* 50Hz 刷新 */
   }
   /* USER CODE END ValveTask */

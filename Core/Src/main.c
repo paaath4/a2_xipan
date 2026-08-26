@@ -92,7 +92,7 @@ int main(void)
   MX_CAN1_Init();
   MX_CAN2_Init();
   /* USER CODE BEGIN 2 */
-  solenoid_init();          /* 电磁筏板上电初始化(全关) */
+  solenoid_init(1);          /* 电磁筏板上电初始化, 用通道1 */
   /* USER CODE END 2 */
 
   /* Init scheduler */

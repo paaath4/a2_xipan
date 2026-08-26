@@ -26,14 +26,14 @@ void solenoid_init(uint8_t usart_channel)
     switch (usart_channel)
     {
     case 1:
-        solenoid_channel_init(&solenoid_Channel1, GPIOA, GPIO_PIN_9, GPIO_PIN_10);
-        __HAL_RCC_GPIOA_CLK_ENABLE();
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9 | GPIO_PIN_10, GPIO_PIN_RESET);
-        GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
+        solenoid_channel_init(&solenoid_Channel1, VALVE_SDA_GPIO_Port, VALVE_SDA_Pin, VALVE_CLK_Pin);
+        __HAL_RCC_GPIOB_CLK_ENABLE();
+        HAL_GPIO_WritePin(VALVE_SDA_GPIO_Port, VALVE_SDA_Pin | VALVE_CLK_Pin, GPIO_PIN_RESET);
+        GPIO_InitStruct.Pin = VALVE_SDA_Pin | VALVE_CLK_Pin;
         GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
         GPIO_InitStruct.Pull = GPIO_NOPULL;
         GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-        HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+        HAL_GPIO_Init(VALVE_SDA_GPIO_Port, &GPIO_InitStruct);
         break;
     case 2:
         solenoid_channel_init(&solenoid_Channel2, GPIOA, GPIO_PIN_2, GPIO_PIN_3);
