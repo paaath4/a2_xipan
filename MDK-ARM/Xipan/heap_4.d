@@ -1,14 +1,13 @@
-xipan/heap_4.o: \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\MemMang\heap_4.c \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  ..\Core\Inc\FreeRTOSConfig.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+xipan\heap_4.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+xipan\heap_4.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+xipan\heap_4.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+xipan\heap_4.o: ../Core/Inc/FreeRTOSConfig.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+xipan\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

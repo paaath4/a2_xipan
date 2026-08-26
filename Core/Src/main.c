@@ -24,7 +24,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Solenoid.h"
+#include "Pump.h"
+#include "dj_motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,7 +93,12 @@ int main(void)
   MX_CAN1_Init();
   MX_CAN2_Init();
   /* USER CODE BEGIN 2 */
-  solenoid_init(1);          /* 电磁筏板上电初始化, 用通道1 */
+  pump_init();               /* 气泵上电关泵 */
+  DJ_Init();                 /* 电机初始化 */
+  DJ_CAN_Init();             /* CAN2 滤波+启动+接收中断 */
+  g_motor[0].begin = true;   /* 使能电机 */
+  DJ_SetMode(1, DJ_Position);/* 位置模式 */
+  DJ_SetPos(1, 90.0f);       /* 目标位置(先空载确认方向/反馈) */
   /* USER CODE END 2 */
 
   /* Init scheduler */

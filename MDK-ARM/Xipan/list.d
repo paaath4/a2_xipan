@@ -1,12 +1,12 @@
-xipan/list.o: ..\Middlewares\Third_Party\FreeRTOS\Source\list.c \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  ..\Core\Inc\FreeRTOSConfig.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
+xipan\list.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+xipan\list.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+xipan\list.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+xipan\list.o: ../Core/Inc/FreeRTOSConfig.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+xipan\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

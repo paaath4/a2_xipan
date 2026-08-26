@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Solenoid.h"
+#include "Pump.h"
+#include "dj_motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-static uint8_t g_valve_cmd = 0;   /* 阀当前目标状态(bit0=吸, bit1=放), 由状态机写 */
+
 /* USER CODE END Variables */
 /* Definitions for Ledtask */
 osThreadId_t LedtaskHandle;
@@ -58,13 +59,6 @@ const osThreadAttr_t Ledtask_attributes = {
 osThreadId_t MotortaskHandle;
 const osThreadAttr_t Motortask_attributes = {
   .name = "Motortask",
-  .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
-/* Definitions for Valvetask */
-osThreadId_t ValvetaskHandle;
-const osThreadAttr_t Valvetask_attributes = {
-  .name = "Valvetask",
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
@@ -90,7 +84,6 @@ const osThreadAttr_t Beeptask_attributes = {
 
 void LedTask(void *argument);
 void MotorTask(void *argument);
-void ValveTask(void *argument);
 void StacteMac(void *argument);
 void BeepTask(void *argument);
 
@@ -128,9 +121,6 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of Motortask */
   MotortaskHandle = osThreadNew(MotorTask, NULL, &Motortask_attributes);
-
-  /* creation of Valvetask */
-  ValvetaskHandle = osThreadNew(ValveTask, NULL, &Valvetask_attributes);
 
   /* creation of Statemac */
   StatemacHandle = osThreadNew(StacteMac, NULL, &Statemac_attributes);
@@ -176,32 +166,12 @@ void LedTask(void *argument)
 void MotorTask(void *argument)
 {
   /* USER CODE BEGIN MotorTask */
-  /* Infinite loop */
   for(;;)
   {
+    DJ_Func();      /* 1kHz 电机状态机 */
     osDelay(1);
   }
   /* USER CODE END MotorTask */
-}
-
-/* USER CODE BEGIN Header_ValveTask */
-/**
-* @brief Function implementing the Valvetask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_ValveTask */
-void ValveTask(void *argument)
-{
-  /* USER CODE BEGIN ValveTask */
-  /* 周期刷新阀状态: 状态机经 Valve_SetCmd 设定目标, 这里每隔 20ms 烧录一次线圈。
-     数据没变时 register_updata 会自动跳过, 不会反复刷 IO。 */
-  for(;;)
-  {
-    solenoid_on(1, g_valve_cmd);   /* 通道1 */
-    osDelay(20);          /* 50Hz 刷新 */
-  }
-  /* USER CODE END ValveTask */
 }
 
 /* USER CODE BEGIN Header_StacteMac */
@@ -242,10 +212,6 @@ void BeepTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-/* 供吸盘状态机(Statemac)调用: 设定阀目标状态 */
-void Valve_SetCmd(uint8_t cmd)
-{
-    g_valve_cmd = cmd & 0x0F;
-}
+
 /* USER CODE END Application */
 

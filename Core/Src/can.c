@@ -21,7 +21,7 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "dj_motor.h"   
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
@@ -232,6 +232,15 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
+/* CAN 接收中断: CAN2 收到的电机反馈帧喂给电机驱动 */
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+    CAN_RxHeaderTypeDef rx;
+    uint8_t data[8];
+    if (hcan->Instance == CAN2) {
+        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx, data);
+        DJ_Receive(rx, data);
+    }
+}
 /* USER CODE END 1 */
 
