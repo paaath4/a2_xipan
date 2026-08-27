@@ -11,10 +11,6 @@ static volatile uint8_t g_pump  = 0;    /* 0关/1开 */
 
 extern void Beep_Alarm(uint8_t times);   /* 切换蜂鸣(HDL) */
 
-void Xipan_Init(void)
-{
-    /* CAN1 已在 MX_CAN1_Init 配置, 此处留空 */
-}
 
 void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
 {

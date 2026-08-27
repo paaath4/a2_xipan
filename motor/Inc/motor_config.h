@@ -32,11 +32,11 @@ extern "C"
 /* ------------------------------------------------------------------ */
 /* DJI M2006 / M3508                                                    */
 /* ------------------------------------------------------------------ */
-#define MOTOR_DJI_COUNT 1U  /* 吸盘机构一个 3508 */
+#define MOTOR_DJI_COUNT 4U  /* 吸盘机构一个 3508 */
 #define MOTOR_DJI_CAN_BUS 1 /* 0=CAN1,1=CAN2;用 CAN2(CAN1 留给主控) */
 
 #define MOTOR_M2006_COUNT 0U
-#define MOTOR_M3508_COUNT 1U
+#define MOTOR_M3508_COUNT 4U
 #define MOTOR_M2006_REDUCTION_RATIO 36U
 #define MOTOR_M3508_REDUCTION_RATIO 19.20320855f
 
