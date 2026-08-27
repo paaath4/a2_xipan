@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "Pump.h"
 #include "dj_motor.h"
+#include "xipan_ctrl.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,8 +98,7 @@ int main(void)
   DJ_Init();                 /* 电机初始化 */
   DJ_CAN_Init();             /* CAN2 滤波+启动+接收中断 */
   g_motor[0].begin = true;   /* 使能电机 */
-  DJ_SetMode(1, DJ_Position);/* 位置模式 */
-  DJ_SetPos(1, 90.0f);       /* 目标位置(先空载确认方向/反馈) */
+  Xipan_Init();              /* CAN1 主控命令接收 */
   /* USER CODE END 2 */
 
   /* Init scheduler */

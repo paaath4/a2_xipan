@@ -37,6 +37,7 @@
 "xipan\cmsis_os2.o"
 "xipan\heap_4.o"
 "xipan\port.o"
+"xipan\xipan_ctrl.o"
 --strict --scatter "Xipan\Xipan.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -49,3 +49,4 @@ xipan\main.o: ../Motor/Inc/dj_motor.h
 xipan\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 xipan\main.o: ../Motor/Inc/pid.h
 xipan\main.o: ../Motor/Inc/motor_config.h
+xipan\main.o: ..\App\Inc\xipan_ctrl.h

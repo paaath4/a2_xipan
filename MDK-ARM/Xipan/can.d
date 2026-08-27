@@ -36,3 +36,4 @@ xipan\can.o: ../Motor/Inc/dj_motor.h
 xipan\can.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 xipan\can.o: ../Motor/Inc/pid.h
 xipan\can.o: ../Motor/Inc/motor_config.h
+xipan\can.o: ..\App\Inc\xipan_ctrl.h

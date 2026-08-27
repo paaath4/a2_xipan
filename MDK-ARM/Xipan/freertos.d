@@ -47,3 +47,4 @@ xipan\freertos.o: ../Motor/Inc/dj_motor.h
 xipan\freertos.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 xipan\freertos.o: ../Motor/Inc/pid.h
 xipan\freertos.o: ../Motor/Inc/motor_config.h
+xipan\freertos.o: ..\App\Inc\xipan_ctrl.h

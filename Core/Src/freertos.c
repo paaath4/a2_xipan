@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "Pump.h"
 #include "dj_motor.h"
+#include "xipan_ctrl.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +47,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+static volatile uint8_t g_beep_req = 0;
 /* USER CODE END Variables */
 /* Definitions for Ledtask */
 osThreadId_t LedtaskHandle;
@@ -148,10 +149,15 @@ void MX_FREERTOS_Init(void) {
 void LedTask(void *argument)
 {
   /* USER CODE BEGIN LedTask */
-  /* Infinite loop */
+  /* 正常工作: 两灯交替闪烁 */
   for(;;)
   {
-    osDelay(1);
+    HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, GPIO_PIN_RESET);
+    osDelay(500);
+    HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, GPIO_PIN_SET);
+    osDelay(500);
   }
   /* USER CODE END LedTask */
 }
@@ -184,10 +190,10 @@ void MotorTask(void *argument)
 void StacteMac(void *argument)
 {
   /* USER CODE BEGIN StacteMac */
-  /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    Xipan_StateMachine(); 
+    osDelay(5);
   }
   /* USER CODE END StacteMac */
 }
@@ -202,16 +208,33 @@ void StacteMac(void *argument)
 void BeepTask(void *argument)
 {
   /* USER CODE BEGIN BeepTask */
-  /* Infinite loop */
+  /* 上电时响两声 */
+  HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+  osDelay(100);
+  HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+  osDelay(100);
+  HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+  osDelay(100);
+  HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+  osDelay(200);
+  
+  /* 之后检测到蜂鸣请求就响一声 */
   for(;;)
   {
-    osDelay(1);
+    if (g_beep_req)
+    {
+      g_beep_req = 0;
+      HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+      osDelay(100);
+      HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+    }
+    osDelay(20);
   }
   /* USER CODE END BeepTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+void Beep_Trigger(void) { g_beep_req = 1; }   /* 切换状态蜂鸣 */
 /* USER CODE END Application */
 
