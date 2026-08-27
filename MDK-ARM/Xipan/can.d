@@ -32,8 +32,3 @@ xipan\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 xipan\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 xipan\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 xipan\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
-xipan\can.o: ../Motor/Inc/dj_motor.h
-xipan\can.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
-xipan\can.o: ../Motor/Inc/pid.h
-xipan\can.o: ../Motor/Inc/motor_config.h
-xipan\can.o: ..\App\Inc\xipan_ctrl.h

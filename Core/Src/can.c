@@ -21,8 +21,7 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-#include "dj_motor.h"
-#include "xipan_ctrl.h"
+
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
@@ -56,7 +55,18 @@ void MX_CAN1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN CAN1_Init 2 */
-
+  /* CAN1 全收: 主控命令扩展帧(0x010105XX), 回调按 ExtId 分发 */
+  CAN_FilterTypeDef f = {0};
+  f.FilterActivation = ENABLE;
+  f.SlaveStartFilterBank = 14;
+  f.FilterBank = 0;
+  f.FilterScale = CAN_FILTERSCALE_32BIT;
+  f.FilterMode = CAN_FILTERMODE_IDMASK;
+  f.FilterIdHigh = 0; f.FilterIdLow = 0; f.FilterMaskIdHigh = 0; f.FilterMaskIdLow = 0;
+  f.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+  HAL_CAN_ConfigFilter(&hcan1, &f);
+  HAL_CAN_Start(&hcan1);
+  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
   /* USER CODE END CAN1_Init 2 */
 
 }
@@ -88,7 +98,18 @@ void MX_CAN2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN CAN2_Init 2 */
-
+  /* CAN2 全收: 电机反馈标准帧(0x201), 回调喂 DJmotor_Receive */
+  CAN_FilterTypeDef f = {0};
+  f.FilterActivation = ENABLE;
+  f.SlaveStartFilterBank = 14;
+  f.FilterBank = 14;
+  f.FilterScale = CAN_FILTERSCALE_32BIT;
+  f.FilterMode = CAN_FILTERMODE_IDMASK;
+  f.FilterIdHigh = 0; f.FilterIdLow = 0; f.FilterMaskIdHigh = 0; f.FilterMaskIdLow = 0;
+  f.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+  HAL_CAN_ConfigFilter(&hcan2, &f);
+  HAL_CAN_Start(&hcan2);
+  HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING);
   /* USER CODE END CAN2_Init 2 */
 
 }
@@ -233,18 +254,6 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-/* CAN 接收中断 */
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-    CAN_RxHeaderTypeDef rx;
-    uint8_t data[8];
-    if (hcan->Instance == CAN2) {            /* 电机反馈帧 */
-        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx, data);
-        DJ_Receive(rx, data);
-    } else if (hcan->Instance == CAN1) {     /* 主控命令帧 */
-        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx, data);
-        Xipan_OnCan(&rx, data);
-    }
-}
+
 /* USER CODE END 1 */
 

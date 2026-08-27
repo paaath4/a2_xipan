@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F405xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Valve/Inc;../Motor/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../motor/Inc;../valve/Inc;..\App\Inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Motor/Inc;../FML/Inc;../HDL/Inc;../IRQ/Inc;../APL/Tasks/Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -358,7 +358,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Valve/Inc;../Motor/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Motor/Inc;../FML/Inc;../HDL/Inc;../IRQ/Inc;../APL/Tasks/Inc</IncludePath>
             </VariousControls>
           </Aads>
           <LDads>
@@ -432,27 +432,77 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Application/Valve</GroupName>
+          <GroupName>HDL</GroupName>
           <Files>
             <File>
-              <FileName>Pump.c</FileName>
+              <FileName>Beep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\valve\Src\Pump.c</FilePath>
+              <FilePath>..\HDL\Src\Beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>Led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HDL\Src\Led.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Application/Motor</GroupName>
+          <GroupName>IRQ</GroupName>
           <Files>
             <File>
-              <FileName>dj_motor.c</FileName>
+              <FileName>CAN_IRQHandler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Motor/Src/dj_motor.c</FilePath>
+              <FilePath>..\IRQ\Src\CAN_IRQHandler.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FML</GroupName>
+          <Files>
+            <File>
+              <FileName>Pump.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FML\Src\Pump.c</FilePath>
+            </File>
+            <File>
+              <FileName>xipan_ctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FML\Src\xipan_ctrl.c</FilePath>
             </File>
             <File>
               <FileName>pid.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Motor/Src/pid.c</FilePath>
+              <FilePath>..\FML\Src\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>MathFunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FML\Src\MathFunc.c</FilePath>
+            </File>
+            <File>
+              <FileName>Vectoc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FML\Src\Vectoc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Motor</GroupName>
+          <Files>
+            <File>
+              <FileName>DJmotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Motor\Src\DJmotor.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>APL/Tasks</GroupName>
+          <Files>
+            <File>
+              <FileName>myostasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APL\Tasks\Src\myostasks.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -603,16 +653,6 @@
               <FileName>port.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>app</GroupName>
-          <Files>
-            <File>
-              <FileName>xipan_ctrl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\App\Src\xipan_ctrl.c</FilePath>
             </File>
           </Files>
         </Group>

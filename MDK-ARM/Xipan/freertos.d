@@ -42,9 +42,3 @@ xipan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 xipan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 xipan\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 xipan\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
-xipan\freertos.o: ../Valve/Inc/Pump.h
-xipan\freertos.o: ../Motor/Inc/dj_motor.h
-xipan\freertos.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
-xipan\freertos.o: ../Motor/Inc/pid.h
-xipan\freertos.o: ../Motor/Inc/motor_config.h
-xipan\freertos.o: ..\App\Inc\xipan_ctrl.h

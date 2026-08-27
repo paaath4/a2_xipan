@@ -25,8 +25,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Pump.h"
-#include "dj_motor.h"
-#include "xipan_ctrl.h"
+#include "DJmotor.h"
+#include "Beep.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,10 +95,9 @@ int main(void)
   MX_CAN2_Init();
   /* USER CODE BEGIN 2 */
   pump_init();               /* 气泵上电关泵 */
-  DJ_Init();                 /* 电机初始化 */
-  DJ_CAN_Init();             /* CAN2 滤波+启动+接收中断 */
-  g_motor[0].begin = true;   /* 使能电机 */
-  Xipan_Init();              /* CAN1 主控命令接收 */
+  Beep_Init();               /* 上电双响 */
+  DJmotor_Init();            /* 电机初始化 */
+  DJmotor[0].Begin = true;   /* 使能电机驱动 */
   /* USER CODE END 2 */
 
   /* Init scheduler */

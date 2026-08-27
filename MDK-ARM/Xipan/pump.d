@@ -1,5 +1,5 @@
-xipan\pump.o: ..\valve\Src\Pump.c
-xipan\pump.o: ../Valve/Inc/Pump.h
+xipan\pump.o: ..\FML\Src\Pump.c
+xipan\pump.o: ../FML/Inc/Pump.h
 xipan\pump.o: ../Core/Inc/main.h
 xipan\pump.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 xipan\pump.o: ../Core/Inc/stm32f4xx_hal_conf.h

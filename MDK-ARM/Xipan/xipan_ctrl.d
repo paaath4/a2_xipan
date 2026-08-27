@@ -1,5 +1,5 @@
-xipan\xipan_ctrl.o: ..\App\Src\xipan_ctrl.c
-xipan\xipan_ctrl.o: ..\App\Inc\xipan_ctrl.h
+xipan\xipan_ctrl.o: ..\FML\Src\xipan_ctrl.c
+xipan\xipan_ctrl.o: ../FML/Inc/xipan_ctrl.h
 xipan\xipan_ctrl.o: ../Core/Inc/main.h
 xipan\xipan_ctrl.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 xipan\xipan_ctrl.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -33,8 +33,13 @@ xipan\xipan_ctrl.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 xipan\xipan_ctrl.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 xipan\xipan_ctrl.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 xipan\xipan_ctrl.o: ../Core/Inc/can.h
-xipan\xipan_ctrl.o: ../Motor/Inc/dj_motor.h
+xipan\xipan_ctrl.o: ../Motor/Inc/DJmotor.h
 xipan\xipan_ctrl.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
-xipan\xipan_ctrl.o: ../Motor/Inc/pid.h
+xipan\xipan_ctrl.o: ../FML/Inc/pid.h
+xipan\xipan_ctrl.o: ../FML/Inc/MathFunc.h
+xipan\xipan_ctrl.o: D:\keil5\ARM\ARMCC\Bin\..\include\string.h
+xipan\xipan_ctrl.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+xipan\xipan_ctrl.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
+xipan\xipan_ctrl.o: ../FML/Inc/Vector.h
 xipan\xipan_ctrl.o: ../Motor/Inc/motor_config.h
-xipan\xipan_ctrl.o: ../Valve/Inc/Pump.h
+xipan\xipan_ctrl.o: ../FML/Inc/Pump.h
