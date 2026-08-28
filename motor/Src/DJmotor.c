@@ -65,8 +65,8 @@ void DJmotor_Init(void)
     limit.CurrentLimitFlag = true;
     limit.IsLooseStuck = false;
 
-    limit.MaxAngle_deg = 270.0f;
-    limit.MinAngle_deg = -270.0f;
+    limit.MaxAngle_deg = 0.0f;
+    limit.MinAngle_deg = -160.0f;
     limit.PosAngleLimitFlag = false;
     limit.PosRPMFlag = true;
     limit.PosRPMLimit = 430;

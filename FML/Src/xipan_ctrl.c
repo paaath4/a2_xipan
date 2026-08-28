@@ -28,19 +28,19 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
 void Xipan_StateMachine(void)
 {
     if (!g_enable) {                       /* 未使能: 停机 + 关泵 */
-        DJmotor[3].MODE_Set = DJ_Disable;
+        DJmotor[2].MODE_Set = DJ_Disable;
         pump_off();
         return;
     }
     switch (g_cmd) {
     case CMD_SUCK:                         /* 去取球位(取/放球处) */
-        DJmotor[3].valSet.angle_deg = PICK_POS_DEG;
-        DJmotor[3].MODE_Set = DJ_Position;
+        DJmotor[2].valSet.angle_deg = PICK_POS_DEG;
+        DJmotor[2].MODE_Set = DJ_Position;
         Beep_Alarm(1);
         break;
     case CMD_RELEASE:                      /* 去持球位(默认位) */
-        DJmotor[3].valSet.angle_deg = HOLD_POS_DEG;
-        DJmotor[3].MODE_Set = DJ_Position;
+        DJmotor[2].valSet.angle_deg = HOLD_POS_DEG;
+        DJmotor[2].MODE_Set = DJ_Position;
         Beep_Alarm(1);
         break;
     case CMD_PUMP:                         /* 气泵独立 */

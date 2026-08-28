@@ -3,8 +3,8 @@
 #include "main.h"
 
 /* 两个位置(宏占位, 待实测) */
-#define PICK_POS_DEG     -120.0f   /* 取球位(取/放球处) */
-#define HOLD_POS_DEG     -50.0f     /* 持球位(默认/吸住球后维持) */
+#define PICK_POS_DEG     -10.0f   /* 取球位(取/放球处) */
+#define HOLD_POS_DEG     10.0f     /* 持球位(默认/吸住球后维持) */
 
 /*初始时刻将吸盘机构置于最高处，已经测得最高处与最低处相距约为170
 几个位置：

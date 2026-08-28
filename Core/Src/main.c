@@ -97,7 +97,7 @@ int main(void)
   pump_init();               /* 气泵上电关泵 */
   Beep_Init();               /* 上电双响 */
   DJmotor_Init();            /* 电机初始化 */
-  DJmotor[3].Begin = true;   /* 使能电机驱动 */
+  DJmotor[2].Begin = true;   /* 使能电机驱动 */
   /* USER CODE END 2 */
 
   /* Init scheduler */

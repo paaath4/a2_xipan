@@ -144,7 +144,7 @@ void MX_FREERTOS_Init(void) {
   * @retval None
   */
 /* USER CODE END Header_LedTask */
-void LedTask(void *argument)
+__weak void LedTask(void *argument)
 {
   /* USER CODE BEGIN LedTask */
   /* Infinite loop */
@@ -162,7 +162,7 @@ void LedTask(void *argument)
 * @retval None
 */
 /* USER CODE END Header_MotorTask */
-void MotorTask(void *argument)
+__weak void MotorTask(void *argument)
 {
   /* USER CODE BEGIN MotorTask */
   for(;;) { osDelay(1); }
@@ -176,7 +176,7 @@ void MotorTask(void *argument)
 * @retval None
 */
 /* USER CODE END Header_StacteMac */
-void StacteMac(void *argument)
+__weak void StacteMac(void *argument)
 {
   /* USER CODE BEGIN StacteMac */
   for(;;) { osDelay(1); }
@@ -190,7 +190,7 @@ void StacteMac(void *argument)
 * @retval None
 */
 /* USER CODE END Header_BeepTask */
-void BeepTask(void *argument)
+__weak void BeepTask(void *argument)
 {
   /* USER CODE BEGIN BeepTask */
   /* Infinite loop */

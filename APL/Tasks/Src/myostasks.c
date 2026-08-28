@@ -4,12 +4,12 @@
 
 uint8_t BeepAlarmTimes = 0;
 
-void LedWaterTask(void *argument)
+void LedTask(void *argument)
 {
     for (;;) Led_Water();
 }
 
-void BeepAlarmTask(void *argument)
+void BeepTask(void *argument)
 {
     for (;;) {
         for (uint8_t i = 0; i < BeepAlarmTimes; i++) {
@@ -31,8 +31,13 @@ void MotorTask(void *argument)
 
 void StacteMac(void *argument)
 {
+// 调试代码
+//		DJmotor[2].Begin = true;
+//    DJmotor[2].MODE_Set = DJ_Position;
+//    DJmotor[2].valSet.angle_deg = DJmotor[3].valNow.angle_deg;
     for (;;) {
         Xipan_StateMachine();   /* 主控命令 → 电机两位置 + 气泵 */
         osDelay(5);
-    }
+			}
+    
 }
