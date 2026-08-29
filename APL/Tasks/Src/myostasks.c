@@ -32,9 +32,9 @@ void MotorTask(void *argument)
 void StacteMac(void *argument)
 {
 // 调试代码
-//	DJmotor[1].Begin = true;
-//  DJmotor[1].MODE_Set = DJ_Position;
-//  DJmotor[1].valSet.angle_deg = DJmotor[1].valNow.angle_deg; 
+//	DJmotor[DJ_MOTOR_IDX].Begin = true;
+//  DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
+//  DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = DJmotor[1].valNow.angle_deg; 
     for (;;) {
         Xipan_StateMachine();   /* 主控命令 → 电机两位置 + 气泵 */
         osDelay(5);
