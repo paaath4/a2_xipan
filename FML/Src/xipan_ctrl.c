@@ -38,7 +38,7 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
         g_cmd = CMD_SUCK;
         break; /* 取球: 去取球位 */
     case 0x01010503:
-        g_cmd = CMD_RELEASE;
+        g_cmd = CMD_HOLD;
         break; /* 放球: 去持球位 */
     case 0x01010504:
         g_pump = d[1];
@@ -68,7 +68,7 @@ void Xipan_StateMachine(void)
         Send_Feedback(0x05010102, 'O', 'K');
         Beep_Alarm(1);
         break;
-    case CMD_RELEASE: /* 去持球位(默认位) */
+    case CMD_HOLD: /* 去持球位(默认位) */
         DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = HOLD_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
         Send_Feedback(0x05010103, 'O', 'K');
