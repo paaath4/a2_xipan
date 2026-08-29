@@ -3,8 +3,10 @@
 #include "main.h"
 
 /* 两个位置(宏占位, 待实测) */
-#define PICK_POS_DEG     -10.0f   /* 取球位(取/放球处) */
-#define HOLD_POS_DEG     10.0f     /* 持球位(默认/吸住球后维持) */
+#define PICK_POS_DEG     -100.0f   /* 取球位(取/放球处) */
+#define HOLD_POS_DEG     -45.0f     /* 持球位(默认/吸住球后维持) */
+
+typedef enum { CMD_NONE = 0, CMD_SUCK, CMD_RELEASE, CMD_PUMP, CMD_RESET } cmd_t;
 
 /*初始时刻将吸盘机构置于最高处，已经测得最高处与最低处相距约为170
 几个位置：
@@ -27,6 +29,9 @@ reset的函数完善
 
 
 */
+extern volatile uint8_t g_enable;   
+extern volatile cmd_t   g_cmd;
+extern volatile uint8_t g_pump;
 
 void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *data); /* CAN1 帧解析(回调调) */
 void Xipan_StateMachine(void);                            /* 状态机(任务调) */
