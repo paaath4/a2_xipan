@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Xipan\Xipan.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Xipan\Xipan.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Aug 29 15:35:08 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Aug 30 15:54:41 2026
 <BR><P>
 <H3>Maximum Stack Usage =        256 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -618,7 +618,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(i.MX_FREERTOS_Init)
 </UL>
-<P><STRONG><a name="[d6]"></a>Beep_Alarm</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, beep.o(i.Beep_Alarm))
+<P><STRONG><a name="[d7]"></a>Beep_Alarm</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, beep.o(i.Beep_Alarm))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Xipan_StateMachine
 </UL>
 
@@ -952,7 +952,7 @@ Global Symbols
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BeepTask
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_set
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_set
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_off
 </UL>
 
@@ -1269,7 +1269,7 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f405xx.o(RESET)
 </UL>
-<P><STRONG><a name="[ab]"></a>Xipan_OnCan</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, xipan_ctrl.o(i.Xipan_OnCan))
+<P><STRONG><a name="[ab]"></a>Xipan_OnCan</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, xipan_ctrl.o(i.Xipan_OnCan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Xipan_OnCan &rArr; Send_Feedback &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Feedback
@@ -1277,18 +1277,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_RxFifo0MsgPendingCallback
 </UL>
 
-<P><STRONG><a name="[d1]"></a>Xipan_StateMachine</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, xipan_ctrl.o(i.Xipan_StateMachine))
+<P><STRONG><a name="[d1]"></a>Xipan_StateMachine</STRONG> (Thumb, 214 bytes, Stack size 8 bytes, xipan_ctrl.o(i.Xipan_StateMachine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = Xipan_StateMachine &rArr; Send_Feedback &rArr; HAL_CAN_AddTxMessage
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Alarm
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Alarm
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Feedback
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_set
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_set
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_off
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StacteMac
 </UL>
 
-<P><STRONG><a name="[70]"></a>main</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[70]"></a>main</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
 <LI>Call Chain = main &rArr; MX_FREERTOS_Init &rArr; osThreadNew &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
@@ -1365,7 +1365,7 @@ Global Symbols
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Xipan_StateMachine
 </UL>
 
-<P><STRONG><a name="[d7]"></a>pump_set</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, pump.o(i.pump_set))
+<P><STRONG><a name="[d6]"></a>pump_set</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, pump.o(i.pump_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = pump_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -1989,8 +1989,8 @@ Local Symbols
 <P><STRONG><a name="[fb]"></a>prvProcessExpiredTimer</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, timers.o(i.prvProcessExpiredTimer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = prvProcessExpiredTimer &rArr; xTimerGenericCommand &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInsertTimerInActiveList
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvProcessTimerOrBlockTask
@@ -1999,9 +1999,9 @@ Local Symbols
 <P><STRONG><a name="[fd]"></a>prvProcessReceivedCommands</STRONG> (Thumb, 350 bytes, Stack size 48 bytes, timers.o(i.prvProcessReceivedCommands))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = prvProcessReceivedCommands &rArr; prvSampleTimeNow &rArr; prvSwitchTimerLists &rArr; xTimerGenericCommand &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortFree
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvSampleTimeNow
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInsertTimerInActiveList
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueReceive
@@ -2034,9 +2034,9 @@ Local Symbols
 <P><STRONG><a name="[105]"></a>prvSwitchTimerLists</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, timers.o(i.prvSwitchTimerLists))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = prvSwitchTimerLists &rArr; xTimerGenericCommand &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsert
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInsert
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvSampleTimeNow
 </UL>

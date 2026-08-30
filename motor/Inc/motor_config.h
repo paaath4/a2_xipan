@@ -41,7 +41,7 @@ extern "C"
 #define MOTOR_M3508_REDUCTION_RATIO 19.20320855f
 
 /* 吸盘机构所用电机在，换电调更换电机ID更改这里 */
-#define DJ_MOTOR_IDX 1U //此处为电机ID-1
+#define DJ_MOTOR_IDX 0U //此处为电机ID-1
 
 /* ------------------------------------------------------------------ */
 /* VESC                                                                 */

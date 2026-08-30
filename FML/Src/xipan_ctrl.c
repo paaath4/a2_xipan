@@ -2,7 +2,7 @@
 #include "can.h"
 #include "DJmotor.h"
 #include "Pump.h"
-
+#include "cmsis_os2.h"
 volatile uint8_t g_enable = 0; /* 0失能/1使能 */
 volatile cmd_t g_cmd = CMD_NONE;
 volatile uint8_t g_pump = 0; /* 0关/1开 */
@@ -35,14 +35,15 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
         Send_Feedback(0x05010101, 'M', g_enable);
         break; /* 使能状态+回报 */
     case 0x01010502:
+        g_pump = 1;
         g_cmd = CMD_SUCK;
         break; /* 取球: 去取球位 */
     case 0x01010503:
         g_cmd = CMD_HOLD;
         break; /* 放球: 去持球位 */
     case 0x01010504:
-        g_pump = d[1];
-        g_cmd = CMD_PUMP;
+        g_pump = 0;
+        g_cmd = CMD_RELEASE;
         break; /* 气泵开关 */
     case 0x010205FF:
         g_cmd = CMD_RESET;
@@ -60,11 +61,13 @@ void Xipan_StateMachine(void)
         pump_off();
         return;
     }
+    else DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
     switch (g_cmd)
     {
-    case CMD_SUCK: /* 去取球位(取/放球处) */
+    case CMD_SUCK: /* 先开泵，再去取球处 */
         DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = PICK_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
+        pump_set();
         Send_Feedback(0x05010102, 'O', 'K');
         Beep_Alarm(1);
         break;
@@ -74,16 +77,15 @@ void Xipan_StateMachine(void)
         Send_Feedback(0x05010103, 'O', 'K');
         Beep_Alarm(1);
         break;
-    case CMD_PUMP: /* 气泵独立 */
-        if (g_pump)
-            pump_set();
-        else
-            pump_off();
-        Send_Feedback(0x05010104, 'R', g_pump); /* 气泵状态回报 */
-        break;
-    case CMD_RESET: /* 复位: 回持球位(不重启, 不改变0值基准) */
-        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = HOLD_POS_DEG;
+    case CMD_RELEASE: /* 放球: 关泵 + 去放球位 */
+        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = RELEASE_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
+        pump_off();
+        Send_Feedback(0x05010104, 'O', 'K');
+        break;
+    case CMD_RESET: /* 复位，注意需手动将机构置于最高位*/
+        __set_FAULTMASK(1);
+        NVIC_SystemReset();
         break;
     default:
         break;

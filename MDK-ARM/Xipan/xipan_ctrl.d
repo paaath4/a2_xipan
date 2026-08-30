@@ -43,3 +43,4 @@ xipan\xipan_ctrl.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
 xipan\xipan_ctrl.o: ../FML/Inc/Vector.h
 xipan\xipan_ctrl.o: ../Motor/Inc/motor_config.h
 xipan\xipan_ctrl.o: ../FML/Inc/Pump.h
+xipan\xipan_ctrl.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
