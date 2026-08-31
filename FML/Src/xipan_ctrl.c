@@ -30,24 +30,33 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
 
     switch (rx->ExtId)
     {
+
     case 0x01010501:
         g_enable = d[1];
         Send_Feedback(0x05010101, 'M', g_enable);
         break; /* 使能状态+回报 */
+
     case 0x01010502:
-        g_pump = 1;
         g_cmd = CMD_SUCK;
-        break; /* 取球: 去取球位 */
+        break; /* 取球: 去取球位+开泵 */
+
     case 0x01010503:
         g_cmd = CMD_HOLD;
         break; /* 放球: 去持球位 */
+
     case 0x01010504:
-        g_pump = 0;
         g_cmd = CMD_RELEASE;
-        break; /* 放球 */
-    case 0x010205FF:
+        break; /* 放球：去放球位 */
+        
+    case 0x01010505:
+        g_pump = d[1];
+        g_cmd = CMD_PUMP;
+        break;/* 气泵开关控制 0关1开 */
+
+    case 0x010105FF:
         g_cmd = CMD_RESET;
         break; /* 复位 */
+
     default:
         break;
     }
@@ -64,29 +73,41 @@ void Xipan_StateMachine(void)
     else DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
     switch (g_cmd)
     {
-    case CMD_SUCK: /* 先开泵，再去取球处 */
+
+    case CMD_SUCK: /* 取球：去取球处+开泵  */
         DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = PICK_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
         pump_set();
         Send_Feedback(0x05010102, 'O', 'K');
         Beep_Alarm(1);
         break;
-    case CMD_HOLD: /* 去持球位(默认位) */
+
+    case CMD_HOLD: /* 持球：去持球位(默认位) */
         DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = HOLD_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
         Send_Feedback(0x05010103, 'O', 'K');
         Beep_Alarm(1);
         break;
-    case CMD_RELEASE: /* 放球: 关泵 + 去放球位 */
+
+    case CMD_RELEASE: /* 放球: 去放球位（也可作为取球预备位置）*/
         DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = RELEASE_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
-        pump_off();
         Send_Feedback(0x05010104, 'O', 'K');
         break;
+
+    case CMD_PUMP: /* 气泵控制*/
+        if (g_pump)
+            pump_set();
+        else
+            pump_off();
+        Send_Feedback(0x05010105, 'R', g_pump); /* 气泵状态回报 */
+        break;
+
     case CMD_RESET: /* 复位，注意需手动将机构置于最高位*/
         __set_FAULTMASK(1);
         NVIC_SystemReset();
         break;
+
     default:
         break;
     }

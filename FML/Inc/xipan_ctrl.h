@@ -27,12 +27,14 @@ typedef enum
 { CMD_NONE    = 0,
   CMD_SUCK    = 1, 
   CMD_HOLD    = 2, 
-  CMD_RELEASE = 3, 
-  CMD_RESET   = 4 
+  CMD_RELEASE = 3,
+  CMD_PUMP    = 4,
+  CMD_RESET   = 5
+ 
 } cmd_t;
 
 extern volatile uint8_t g_enable;  //是否使能
-extern volatile cmd_t   g_cmd;     //功能命令关键字（0:默认状态     1:取球    2:持球   3:放球    4:复位）
+extern volatile cmd_t   g_cmd;     //功能命令关键字（0:默认状态     1:取球(开泵)    2:持球   3:放球    4:气泵开关      5复位）
 extern volatile uint8_t g_pump;    //气泵开关关键字
 
 void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *data); /* CAN1 帧解析(回调调) */
