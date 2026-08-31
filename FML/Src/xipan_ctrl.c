@@ -44,7 +44,7 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
     case 0x01010504:
         g_pump = 0;
         g_cmd = CMD_RELEASE;
-        break; /* 气泵开关 */
+        break; /* 放球 */
     case 0x010205FF:
         g_cmd = CMD_RESET;
         break; /* 复位 */
