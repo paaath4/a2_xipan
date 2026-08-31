@@ -3,9 +3,11 @@
 #include "DJmotor.h"
 #include "Pump.h"
 #include "cmsis_os2.h"
+
 volatile uint8_t g_enable = 0; /* 0失能/1使能 */
 volatile cmd_t g_cmd = CMD_NONE;
 volatile uint8_t g_pump = 0; /* 0关/1开 */
+volatile uint8_t g_type = 0; /* 默认为取球，赋值为1后为取块 */
 
 extern void Beep_Alarm(uint8_t times); /* 切换蜂鸣(HDL) */
 
@@ -53,6 +55,10 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
         g_cmd = CMD_PUMP;
         break;/* 气泵开关控制 0关1开 */
 
+    case 0x01010506:
+        g_type = d[1];   /* 切换操作对象: 0球 1块 */
+        break;
+
     case 0x010105FF:
         g_cmd = CMD_RESET;
         break; /* 复位 */
@@ -74,16 +80,16 @@ void Xipan_StateMachine(void)
     switch (g_cmd)
     {
 
-    case CMD_SUCK: /* 取球：去取球处+开泵  */
-        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = PICK_POS_DEG;
+    case CMD_SUCK: /* 取球/块：去取位置+开泵  */
+        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = (g_type == 0) ? PICKBall_POS_DEG : PICKCube_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
         pump_set();
         Send_Feedback(0x05010102, 'O', 'K');
         Beep_Alarm(1);
         break;
 
-    case CMD_HOLD: /* 持球：去持球位(默认位) */
-        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = HOLD_POS_DEG;
+    case CMD_HOLD: /* 持球/块：去持位置 */
+        DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = (g_type == 0) ? HOLDBall_POS_DEG : HOLDCube_POS_DEG;
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
         Send_Feedback(0x05010103, 'O', 'K');
         Beep_Alarm(1);
