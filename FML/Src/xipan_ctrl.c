@@ -70,6 +70,12 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
 
 void Xipan_StateMachine(void)
 {
+    if (g_cmd == CMD_RESET) 
+    {   /* 复位 */
+        __set_FAULTMASK(1);
+        NVIC_SystemReset();
+        return;
+    }
     if (!g_enable)
     { /* 未使能: 停机 + 关泵 */
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Disable;
