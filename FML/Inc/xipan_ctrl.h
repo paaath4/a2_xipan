@@ -7,21 +7,22 @@
 #define PICKCube_POS_DEG     -143.0f   /* 取块位  */
 
 #define HOLDBall_POS_DEG     -50.0f    /* 持球位(默认/吸住球后维持) */
-#define HOLDCube_POS_DEG     -95.0f   /*  持块位 */
+#define HOLDCube_POS_DEG     -85.0f   /*  持块位 */
 
-#define RELEASE_POS_DEG      -95.0f   /* 放球/放块 位置  */
+#define RELEASE_POS_DEG      -85.0f   /* 放球/放块 位置  */
 
 /*初始时刻将吸盘机构置于最高处，已经测得最高处与最低处相距约为170
 几个位置：
 
-初始位置（最高点）
-最低位置（最低点）
-前往取球位（较低点）
-前往持球点（较高点）
-
 电机的angel_deg的正值为逆时针旋转
 初始位置设为0值，后续位置均为负值（顺时针）
-注意一次性调节范围不要过大，容易超调导致机构相互碰撞
+
+存在的bug：
+使能时需要使能两遍才能使能上（感觉是状态机前面加的那部分有点问题）
+空程问题
+角度还需要细测
+复位时蜂鸣器不响？
+
 */
 typedef enum 
 { CMD_NONE    = 0,

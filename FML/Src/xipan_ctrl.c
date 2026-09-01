@@ -70,8 +70,10 @@ void Xipan_OnCan(CAN_RxHeaderTypeDef *rx, uint8_t *d)
 
 void Xipan_StateMachine(void)
 {
-    if (g_cmd == CMD_RESET) 
-    {   /* 复位 */
+    if (g_cmd == CMD_RESET)
+    {   /* 复位: 蜂鸣两声回应后系统重启 */
+        Beep_Alarm(2);
+        osDelay(400);
         __set_FAULTMASK(1);
         NVIC_SystemReset();
         return;
@@ -82,7 +84,11 @@ void Xipan_StateMachine(void)
         pump_off();
         return;
     }
-    else DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
+    else {
+        DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
+        if (g_cmd == CMD_NONE)   /* 无动作命令: 停在当前(不往0) */
+            DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = DJmotor[DJ_MOTOR_IDX].valNow.angle_deg;
+    }
     switch (g_cmd)
     {
 
@@ -113,11 +119,6 @@ void Xipan_StateMachine(void)
         else
             pump_off();
         Send_Feedback(0x05010105, 'R', g_pump); /* 气泵状态回报 */
-        break;
-
-    case CMD_RESET: /* 复位，注意需手动将机构置于最高位*/
-        __set_FAULTMASK(1);
-        NVIC_SystemReset();
         break;
 
     default:
