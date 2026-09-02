@@ -3,13 +3,13 @@
 #include "main.h"
 
 /* 两个位置(宏占位, 待实测) */
-#define PICKBall_POS_DEG     -125.0f   /* 取球位  */
+#define PICKBall_POS_DEG     -127.0f   /* 取球位  */
 #define PICKCube_POS_DEG     -143.0f   /* 取块位  */
 
 #define HOLDBall_POS_DEG     -50.0f    /* 持球位(默认/吸住球后维持) */
 #define HOLDCube_POS_DEG     -85.0f   /*  持块位 */
 
-#define RELEASE_POS_DEG      -85.0f   /* 放球/放块 位置  */
+#define RELEASE_POS_DEG      -100.0f   /* 放球/放块 位置  */
 
 /*初始时刻将吸盘机构置于最高处，已经测得最高处与最低处相距约为170
 几个位置：

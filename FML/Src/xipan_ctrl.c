@@ -86,8 +86,6 @@ void Xipan_StateMachine(void)
     }
     else {
         DJmotor[DJ_MOTOR_IDX].MODE_Set = DJ_Position;
-        if (g_cmd == CMD_NONE)   /* 无动作命令: 停在当前(不往0) */
-            DJmotor[DJ_MOTOR_IDX].valSet.angle_deg = DJmotor[DJ_MOTOR_IDX].valNow.angle_deg;
     }
     switch (g_cmd)
     {
