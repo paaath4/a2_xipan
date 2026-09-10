@@ -120,8 +120,10 @@ void DJmotor_Init(void)
 
     for (uint32_t i = 0; i < USE_DJNUM; i++)
     {
-        PID_Init(&DJmotor[i].posPID, 0.07f, 0.0005f, 0.0f, PIDPOS);
+        PID_Init(&DJmotor[i].posPID, 0.5f, 0.001f, 20.0f, PIDPOS);
         PID_Init(&DJmotor[i].velPID, 5.5f, 0.3f, 0.01f, PIDINC);
+        DJmotor[i].posPID.iLimit = 5000.0f;  // 积分限幅
+        DJmotor[i].posPID.deadband = 100.0f; // 死区范围
     }
 }
 
